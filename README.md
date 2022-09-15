@@ -1,15 +1,13 @@
 ## Objetivo
 
-Esse programa tem como objetivo fazer o dump do banco de dados mysql e enviar para o Amazon S3.
-
-OBS: é necessário ter o `mysqldump` instalado na sua máquina.
+Esse programa tem como objetivo fazer o dump do banco de dados [mysql|postgres] e enviar para o Amazon S3.
 
 ## Instalação
 
 Faça o clone desse repositório na sua máquina:
 
 ```
-git clone https://github.com/HigoRibeiro/s3-backup.git
+git clone https://github.com/igortrinidad/s3-backup
 ```
 
 Instale as dependências:
@@ -20,10 +18,10 @@ npm install
 
 ## Configuração
 
-Copie o arquivo `.env.example` para `.env`:
+Copie o arquivo `.config.example.js` para `.config.js`:
 
 ```
-cp .env.example .env
+cp .config.example.js .config.js
 ```
 
 Altere as variáveis conforme a necessidade de acesso.
@@ -57,8 +55,5 @@ pm2 start index.js --name=s3-backup
 
 ## Sobre
 
-Para `Error Tracking` eu utilizo o `Sentry`. Para saber mais sobre ele clique [aqui](https://docs.sentry.io/error-reporting/quickstart/?platform=node#configure-the-dsn)
+Para `Error Tracking` eu utilizo o `Sentry`. Para saber mais sobre ele clique [aqui](https://sentry.io)
 
----
-
-I ♥️ [Rocketseat](https://rocketseat.com.br)
