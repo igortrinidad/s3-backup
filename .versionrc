@@ -1,0 +1,11 @@
+{
+  "types": [
+    { "type":"feat","section":"Features | Funcionalidades" },
+    { "type":"fix","section":"Bug Fixes | Melhorias" },
+    { "type":"test","section":"Tests | Testes" },
+    { "type":"chore","section":"Routine tasks | Implementações gerais" },
+    { "type":"docs","section":"Docx | Documentação" },
+    { "type":"build","section":"Build System", "hidden": true },
+    { "type":"ci","hidden":true }
+  ]
+}
