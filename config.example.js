@@ -3,6 +3,7 @@
  */
 module.exports = {
   debug: true,
+  runOnStartup: false,
   cron_time: "0 5 * * 0",
   sentry_dsn: "",
   timezone: "America/Sao_Paulo",

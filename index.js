@@ -5,7 +5,7 @@ const makeBackup = require('./src/makeBackup')
 
 module.exports = ( async () => {
 
-  await makeBackup()
+  if(config.runOnStartup) await makeBackup()
 
   if(config.debug) console.log(`**** Scheduling backups to run at ${config.cron_time} - ${config.timezone} *****`)
 
