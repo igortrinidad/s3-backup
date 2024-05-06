@@ -9,7 +9,7 @@ module.exports = ( async () => {
 
   if(config.debug) console.log(`**** Scheduling backups to run at ${config.cron_time} - ${config.timezone} *****`)
 
-  new CronJob(config.cron_time || '* * * * * *', async () => {
+  new CronJob(config.cron_time || '0 5 * * *', async () => {
     await makeBackup()
   }, null, true, config.timezone)
 
