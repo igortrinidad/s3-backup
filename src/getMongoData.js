@@ -11,7 +11,7 @@ module.exports = (dbInstance, databaseName) => new Promise((resolve, reject) => 
     let cmd
 
     if (dbInstance.isDocker) {
-      cmd = `docker exec ${dbInstance.dockerImage} mongodump --host ${dbInstance.host} --port ${dbInstance.port} -u ${dbInstance.username} -p ${dbInstance.password} --authenticationDatabase admin --db ${databaseName} --archive=${filepath} --gzip`
+      cmd = `docker exec ${dbInstance.dockerImage} mongodump --host ${dbInstance.host} --port ${dbInstance.port} -u ${dbInstance.user} -p ${dbInstance.password} --authenticationDatabase admin --db ${databaseName} --archive --gzip > ${filepath}`
     } else {
       cmd = `mongodump --host ${dbInstance.host} --port ${dbInstance.port} -u ${dbInstance.user} -p ${dbInstance.password} --authenticationDatabase admin --db ${databaseName} --archive=${filepath} --gzip`
     }
