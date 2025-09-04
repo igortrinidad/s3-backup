@@ -2,6 +2,16 @@
 
 Esse programa tem como objetivo fazer o dump do banco de dados [mysql|postgres] e enviar para o Amazon S3.
 
+## ⚠️ Versão 2.0.0 - Migração para AWS SDK v3
+
+A partir da versão 2.0.0, este projeto foi atualizado para usar o AWS SDK v3, que oferece:
+- Melhor performance e menor tamanho do bundle
+- Arquitetura modular e tree-shaking
+- Suporte aprimorado para TypeScript
+- APIs mais modernas e consistentes
+
+A configuração do S3 permanece a mesma, apenas a implementação interna foi modernizada.
+
 ## Instalação
 
 Faça o clone desse repositório na sua máquina:

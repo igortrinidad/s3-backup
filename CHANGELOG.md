@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0] (2025-01-03)
+
+### BREAKING CHANGES
+
+* **aws-sdk**: Migrated from AWS SDK v2 to AWS SDK v3
+* **storage**: Replaced @slynova/flydrive with custom S3StorageManager using AWS SDK v3
+* **dependencies**: Removed aws-sdk v2 and @slynova/flydrive dependencies
+
+### Features
+
+* **s3**: Implement custom S3StorageManager with AWS SDK v3 client
+* **performance**: Improved performance and reduced bundle size with modular AWS SDK v3
+* **security**: Enhanced security with latest AWS SDK v3 features and best practices
+
+### Migration Guide
+
+This is a major version upgrade that requires AWS SDK v3. The S3 configuration format remains the same:
+- `key`: AWS Access Key ID
+- `secret`: AWS Secret Access Key  
+- `region`: AWS Region
+- `bucket`: S3 Bucket name
+
+No configuration changes are required, only the underlying implementation has been modernized.
+
 ### 1.0.1 (2022-09-15)
 
 
