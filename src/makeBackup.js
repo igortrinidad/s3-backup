@@ -60,6 +60,7 @@ module.exports = async () => {
           console.error(`Upload failed for ${backupFile.filename}: ${uploadError.message}`)
           Sentry.captureException(uploadError)
           // Don't delete the file if upload failed
+          await fsPromises.unlink(backupFile.filepath)
           continue
         }
 
