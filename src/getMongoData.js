@@ -2,10 +2,11 @@ const { exec } = require('child_process')
 const moment = require('moment')
 const fs = require('fs')
 const path = require('path')
-const config = require('../config')
+const { getConfig } = require('./configLoader')
 
 module.exports = (dbInstance, databaseName) => new Promise((resolve, reject) => {
   try {
+    const config = getConfig()
     const now = moment().format('YYYY-MM-DD-HH-mm')
     const filename = `${databaseName}-${now}.gz`
     const dumpsDir = path.join(process.cwd(), 'dumps')

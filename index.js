@@ -1,9 +1,9 @@
 const CronJob = require('cron').CronJob
-const config = require('./config')
-
+const { getConfig } = require('./src/configLoader')
 const makeBackup = require('./src/makeBackup')
 
 module.exports = ( async () => {
+  const config = getConfig()
 
   if(config.runOnStartup) await makeBackup()
 
