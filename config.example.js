@@ -25,9 +25,14 @@ module.exports = {
     key: "",
     secret: "",
     region: "us-east-1",
-    bucket: ""
+    bucket: "",
     // Optional: endpoint (for S3-compatible providers)
     // Optional: forcePathStyle (required for some providers)
+    
+    // Multipart upload configuration (optional)
+    // multipartThreshold: 100 * 1024 * 1024, // 100MB - files larger than this will use multipart upload
+    // partSize: 10 * 1024 * 1024, // 10MB - size of each part (minimum 5MB)
+    // maxConcurrentParts: 5 // Number of parts to upload simultaneously
   },
 
   /**
@@ -40,7 +45,10 @@ module.exports = {
    *   region: "auto",
    *   bucket: "your-bucket",
    *   endpoint: "https://YOUR-ACCOUNT-ID.r2.cloudflarestorage.com",
-   *   forcePathStyle: false
+   *   forcePathStyle: false,
+   *   multipartThreshold: 100 * 1024 * 1024, // Optional: 100MB
+   *   partSize: 10 * 1024 * 1024, // Optional: 10MB
+   *   maxConcurrentParts: 5 // Optional: 5 concurrent uploads
    * }
    * 
    * DigitalOcean Spaces:
@@ -89,7 +97,10 @@ module.exports = {
       //   region: "us-east-1",
       //   bucket: "",
       //   endpoint: "",
-      //   forcePathStyle: false
+      //   forcePathStyle: false,
+      //   multipartThreshold: 100 * 1024 * 1024,
+      //   partSize: 10 * 1024 * 1024,
+      //   maxConcurrentParts: 5
       // }
     },
     {

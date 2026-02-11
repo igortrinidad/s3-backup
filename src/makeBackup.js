@@ -47,8 +47,8 @@ module.exports = async () => {
 
           try {
             // Upload to S3 and wait for completion
-            const fileStream = fs.createReadStream(backupFile.filepath)
-            const uploadResult = await storage.put(`${databaseName}/${backupFile.filename}`, fileStream)
+            // Pass filepath directly to enable multipart upload for large files
+            const uploadResult = await storage.put(`${databaseName}/${backupFile.filename}`, backupFile.filepath)
             
             if(config.debug) console.log(`Upload completed successfully for ${backupFile.filename}`)
             

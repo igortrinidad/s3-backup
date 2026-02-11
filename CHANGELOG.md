@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0] (2026-02-11)
+
+### Features
+
+* **s3**: Add multipart upload support for large files
+* **performance**: Concurrent part uploads for faster file transfers
+* **scalability**: Support for files larger than 5GB (previous S3 limit for single uploads)
+* **configurability**: Customizable multipart upload settings:
+  - `multipartThreshold`: Minimum file size to trigger multipart upload (default: 100MB)
+  - `partSize`: Size of each part (default: 10MB, minimum: 5MB)
+  - `maxConcurrentParts`: Number of parts uploaded simultaneously (default: 5)
+
+### Migration Guide
+
+Multipart upload is automatically enabled for files larger than 100MB. No configuration changes are required.
+
+To customize multipart upload behavior, add these optional settings to your `s3Default` or per-instance `s3` configuration:
+
+```javascript
+s3Default: {
+  key: "your-access-key",
+  secret: "your-secret-key",
+  region: "us-east-1",
+  bucket: "your-bucket",
+  multipartThreshold: 100 * 1024 * 1024, // Optional: 100MB
+  partSize: 10 * 1024 * 1024,            // Optional: 10MB
+  maxConcurrentParts: 5                   // Optional: 5 concurrent
+}
+```
+
 ## [2.0.0] (2025-01-03)
 
 ### BREAKING CHANGES

@@ -18,6 +18,7 @@ This program performs database dumps (MySQL, PostgreSQL, MongoDB) and uploads th
 - 🚀 **CLI support**: Run backups via npx with custom config files
 - 🐳 **Docker ready**: Support for both local and Docker database instances
 - 🔄 **Error resilience**: Continue with other backups if one fails
+- ⚡ **Multipart Upload**: Concurrent part uploads for large files (> 100MB) for faster uploads and support for files larger than 5GB
 
 ## ⚠️ Version 2.0.0 - AWS SDK v3 Migration
 
@@ -243,6 +244,61 @@ instances: [
     }
   }
 ]
+```
+
+## Multipart Upload for Large Files
+
+Starting from version 2.1.0, the project supports **automatic multipart upload** for large files, offering:
+
+- ⚡ **Faster uploads**: File parts are uploaded simultaneously
+- 📦 **Support for files > 5GB**: No S3 file size limit
+- 🔄 **Resilience**: If a part fails, only that part needs to be retried
+- ⚙️ **Configurable**: Customize part size and number of concurrent uploads
+
+### Default Configuration
+
+By default, files larger than **100MB** automatically use multipart upload with these settings:
+- **Part size**: 10MB
+- **Concurrent uploads**: 5 parts at a time
+
+### Customize Multipart Upload
+
+Add these options to your `s3Default` configuration or specific instance `s3` settings:
+
+```javascript
+s3Default: {
+  key: "your-access-key",
+  secret: "your-secret-key",
+  region: "us-east-1",
+  bucket: "your-bucket",
+  
+  // Multipart upload settings (optional)
+  multipartThreshold: 100 * 1024 * 1024, // 100MB - files larger will use multipart
+  partSize: 10 * 1024 * 1024,            // 10MB - size of each part (minimum 5MB)
+  maxConcurrentParts: 5                   // 5 - number of parts uploaded simultaneously
+}
+```
+
+### Recommendations
+
+- **Small files (< 100MB)**: Use default settings (simple upload)
+- **Medium files (100MB - 1GB)**: Default works well (10MB per part, 5 concurrent)
+- **Large files (> 1GB)**: Consider increasing `partSize` to 20MB and `maxConcurrentParts` to 10
+- **Slow connections**: Reduce `maxConcurrentParts` to 2-3
+- **Fast connections**: Increase `maxConcurrentParts` to 8-10
+
+### Example Configuration for Large Backups
+
+```javascript
+s3Default: {
+  key: "your-access-key",
+  secret: "your-secret-key",
+  region: "us-east-1",
+  bucket: "your-bucket",
+  multipartThreshold: 50 * 1024 * 1024,  // 50MB - start multipart earlier
+  partSize: 20 * 1024 * 1024,            // 20MB - larger parts
+  maxConcurrentParts: 10                  // 10 concurrent uploads
+}
 ```
 
 ## Discord Notifications
