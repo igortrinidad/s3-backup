@@ -1,16 +1,16 @@
 {
-  "name": "s3-backup",
+  "name": "simple-backuper",
   "version": "2.0.0",
   "description": "Database backup tool for S3-compatible storage providers",
   "main": "index.js",
   "bin": {
-    "s3-backup": "./bin/s3-backup.js"
+    "simple-backuper": "./bin/simple-backuper.js"
   },
   "scripts": {
     "release": "standard-version"
   },
   "keywords": [],
-  "author": "",
+  "author": "Igor Trindade",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.658.1",
